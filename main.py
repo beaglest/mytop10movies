@@ -8,13 +8,15 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
 
+AUTH_KEY = 'auth_key'
+
 
 class Base(DeclarativeBase):
     pass
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = 'secret_key'
 Bootstrap5(app)
 
 # CREATE DB
@@ -98,7 +100,7 @@ def add():
 
         headers = {
             "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZDVjOWNkNDRmNGY4NzI3NDhmYTI3NGFjMDYyN2QzMSIsInN1YiI6IjY1YmU3NWNkNDM5OTliMDE4NGM1ZjJlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y34OHE6k_93l3Gf6Hun2x00kyQDLOgpIGCJEqPF3_vU"
+            "Authorization": AUTH_KEY
         }
         response = requests.get(url, headers=headers, params=parameters).json()
 
@@ -116,7 +118,7 @@ def select(mid):
 
     headers = {
         "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZDVjOWNkNDRmNGY4NzI3NDhmYTI3NGFjMDYyN2QzMSIsInN1YiI6IjY1YmU3NWNkNDM5OTliMDE4NGM1ZjJlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y34OHE6k_93l3Gf6Hun2x00kyQDLOgpIGCJEqPF3_vU"
+        "Authorization": AUTH_KEY
     }
 
     response = requests.get(url, headers=headers).json()
